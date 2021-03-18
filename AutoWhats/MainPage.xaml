@@ -4,21 +4,47 @@
              x:Class="AutoWhats.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        <Frame BackgroundColor="#0DC143" Padding="24" CornerRadius="0">
+            <Label Text="AutoWhat" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
+        <Label Text="Comienza a usar AutoWhat" HorizontalOptions="CenterAndExpand" FontSize="Title" Padding="30,10,30,10"/>
+        <Label Text="Activa el Servicio de NLService para que la app funcione" FontSize="16" Padding="30,0,30,0"/>
         <Label FontSize="16" Padding="30,24,30,0">
             <Label.FormattedText>
                 <FormattedString>
                     <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+                        <Span Text="Aprende mas en..."/>
+                        <Span TextColor="Blue" Text="facebook.com/ZeroXRagdeDev" FontAttributes="Bold"/>
                     </FormattedString.Spans>
                 </FormattedString>
             </Label.FormattedText>
         </Label>
+        <Button Text="Activar/Desactivar Servicio" x:Name="btnActServ"></Button>
+
+        <Frame BackgroundColor="#000040" Padding="24" CornerRadius="0">
+            <Label Text="MENU" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <CheckBox Grid.Row="0" Grid.Column="0" VerticalOptions="Center" x:Name="chVoz"></CheckBox>
+            <Label Grid.Row="0" Grid.Column="1" Text="Leer Mensajes" FontSize="16" />
+        </Grid>
+
+
+
+
+
+        <Button Text="Crear Bot" x:Name="btnBotsMake"></Button>
+        <Button Text="Lista Bots" x:Name="btnBotsLis"></Button>
+
     </StackLayout>
 
 </ContentPage>

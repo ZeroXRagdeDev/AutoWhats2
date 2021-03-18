@@ -33,13 +33,18 @@ namespace AutoWhats.Droid
          
             return base.OnBind(intent);
         }
+       
         public override bool OnUnbind(Intent intent)
         {
             StopService(new Intent(this, typeof(NLService)));
+            StopSelf();
             return base.OnUnbind(intent);
         }
+
+
         public override void OnNotificationPosted(StatusBarNotification sbn)
         {
+
             string packageName = sbn.PackageName;
             try
             {
@@ -53,8 +58,13 @@ namespace AutoWhats.Droid
                     string[] multiMensajes = contenedr.GetCharSequenceArray("android.textLines");
 
                     string content = noty.TickerText.ToString();
-                //    TextToSpeech.SpeakAsync("Mensaje" );
-                  //  TextToSpeech.SpeakAsync("de" );
+                    //    TextToSpeech.SpeakAsync("Mensaje" );
+                    //  TextToSpeech.SpeakAsync("de" );
+
+                    if (!ControlGlobalAndroid.estado_voice)
+                    {
+                        return;
+                    }
                     TextToSpeech.SpeakAsync(content);
 
 
