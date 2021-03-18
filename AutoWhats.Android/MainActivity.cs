@@ -22,40 +22,45 @@ namespace AutoWhats.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            Permission permiso_noty = CheckSelfPermission(Manifest.Permission.BindNotificationListenerService);
+            
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
-            Console.WriteLine("SUPERMAN:"+permiso_noty);
-
-
-
-            if (permiso_noty == Permission.Denied)
-            {
+            Permission permiso_noty = CheckSelfPermission(Manifest.Permission.BindNotificationListenerService);
+            if (permiso_noty == Permission.Denied) {
                 Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
                 StartActivity(intent);
-               
             }
+                //StopService(new Intent(this, typeof(NLService)));
+                //  
 
-/*
-           try {
-               
-                StartService(new Intent(this, typeof(NLService)));
-            } catch {
-               
+                //  Console.WriteLine("SUPERMAN:" + permiso_noty);
+                /*  if (permiso_noty == Permission.Denied)
+                  {
+                    //  Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+                     // StartActivity(intent);
 
-            }*/
-              
-            
+                  }*/
 
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+                /*
+                           try {
+
+                                StartService(new Intent(this, typeof(NLService)));
+                            } catch {
+
+
+                            }*/
+                // isMyServiceRunning(NLService)
+
+
+
+                Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
 
 
         }
-
 
 
 
