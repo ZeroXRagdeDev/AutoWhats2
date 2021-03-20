@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <CheckBox Grid.Row="0" Grid.Column="0" VerticalOptions="Center" x:Name="chVoz"></CheckBox>
+            <CheckBox x:Name="chVoz" Grid.Row="0" Grid.Column="0" VerticalOptions="Center"></CheckBox>
             <Label Grid.Row="0" Grid.Column="1" Text="Leer Mensajes" FontSize="16" />
         </Grid>
 
@@ -42,6 +42,7 @@
 
 
 
+        <Button Text="Configurar Lector" x:Name="btnConfigLector"></Button>
         <Button Text="Crear Bot" x:Name="btnBotsMake"></Button>
         <Button Text="Lista Bots" x:Name="btnBotsLis"></Button>
 

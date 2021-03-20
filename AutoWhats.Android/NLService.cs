@@ -61,29 +61,35 @@ namespace AutoWhats.Droid
                     //    TextToSpeech.SpeakAsync("Mensaje" );
                     //  TextToSpeech.SpeakAsync("de" );
 
-                    if (!ControlGlobalAndroid.estado_voice)
+                    if (ControlGlobalAndroid.estado_voice)
                     {
-                        return;
+                        TextToSpeech.SpeakAsync(content);
                     }
-                    TextToSpeech.SpeakAsync(content);
+                    
 
 
                     if (multiMensajes == null)
                     {
                         string mensaje = contenedr.GetString(NotificationCompat.ExtraText);
-                    
-                        TextToSpeech.SpeakAsync(mensaje);
+                        if (ControlGlobalAndroid.estado_voice)
+                        {
+                            TextToSpeech.SpeakAsync(mensaje);
+                        }
+                        
                     }
                     else {
 
                         foreach (string mensaje in multiMensajes) {
-                            TextToSpeech.SpeakAsync(mensaje);
+                            if (ControlGlobalAndroid.estado_voice)
+                            {
+                                TextToSpeech.SpeakAsync(mensaje);
+                            }
                         }
                     }
 
 
 
-                    Console.WriteLine("YO SOY BATMAN");
+                  //  Console.WriteLine("YO SOY BATMAN");
 
 
                     

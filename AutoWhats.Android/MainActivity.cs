@@ -11,6 +11,8 @@ using Android.Service.Notification;
 using Android;
 using Android.Support.V4.App;
 using System.Collections.Generic;
+using Acr.UserDialogs;
+using AutoWhats.Interfaces;
 
 namespace AutoWhats.Droid
 {
@@ -21,6 +23,7 @@ namespace AutoWhats.Droid
 
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+  
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -34,10 +37,11 @@ namespace AutoWhats.Droid
 
 
             Xamarin.Essentials.Preferences.Set("SetSubcription", true);
-           
 
+        
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            UserDialogs.Init(() => this);
             LoadApplication(new App());
 
 
@@ -54,6 +58,7 @@ namespace AutoWhats.Droid
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
+           // ContactsService.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }

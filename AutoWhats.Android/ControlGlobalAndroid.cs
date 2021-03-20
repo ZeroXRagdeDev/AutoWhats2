@@ -2,9 +2,14 @@
 using Android;
 
 using Android.Content;
+using Android.Database;
+using Android.Provider;
 using Android.Support.V4.App;
 using AutoWhats.Droid;
 using AutoWhats.Interfaces;
+using AutoWhats.Modelos;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using static Android.Manifest;
 
@@ -18,6 +23,17 @@ namespace AutoWhats.Droid
     {
         public static Context contextApp;
         public static bool estado_voice=false;
+
+
+
+
+        public async Task<IList<Contacto>> GetContactListAsync()
+        {
+           
+
+            return null;
+
+        }
 
         public void ADVoiceReaderWhats()
         {

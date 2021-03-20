@@ -1,4 +1,5 @@
 ﻿using AutoWhats.Interfaces;
+using AutoWhats.Modelos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,11 +18,17 @@ namespace AutoWhats
             BindingContext = this;
             btnActServ.Clicked += BtnActServ_Clicked;
             chVoz.CheckedChanged += ChVoz_CheckedChanged;
+            btnConfigLector.Clicked += BtnConfigLecto_Clicked;
+        }
+
+        private void BtnConfigLecto_Clicked(object sender, EventArgs e)
+        {
+          //  IList<Contacto> contactos = DependencyService.Get<XamarinAndroidGlobal>().GetContactListAsync().Result;
         }
 
         private void ChVoz_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            chVoz.IsChecked = !chVoz.IsChecked;
+           // chVoz.IsChecked = !chVoz.IsChecked;
             DependencyService.Get<XamarinAndroidGlobal>().ADVoiceReaderWhats();
            
         }
