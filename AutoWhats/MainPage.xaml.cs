@@ -1,5 +1,6 @@
 ﻿using AutoWhats.Interfaces;
-using AutoWhats.Modelos;
+
+using AutoWhats.Vistas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,12 +24,12 @@ namespace AutoWhats
 
         private void BtnConfigLecto_Clicked(object sender, EventArgs e)
         {
-          //  IList<Contacto> contactos = DependencyService.Get<XamarinAndroidGlobal>().GetContactListAsync().Result;
+            App.Current.MainPage = new NavigationPage(new ConfigurarVoz());
         }
 
         private void ChVoz_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-           // chVoz.IsChecked = !chVoz.IsChecked;
+          
             DependencyService.Get<XamarinAndroidGlobal>().ADVoiceReaderWhats();
            
         }

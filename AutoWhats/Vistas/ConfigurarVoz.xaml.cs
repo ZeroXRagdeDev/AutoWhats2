@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoWhats.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,19 @@ namespace AutoWhats.Vistas
         public ConfigurarVoz()
         {
             InitializeComponent();
+            chReadAll.CheckedChanged += ChReadAll_CheckedChanged;
+        }
+
+        private void ChReadAll_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (!chReadAll.IsChecked) {
+
+                CustomViewCell celContactos = new CustomViewCell();
+
+                ContenedorContactos.Content = celContactos.View;
+
+
+            }
         }
     }
 }

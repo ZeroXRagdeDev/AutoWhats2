@@ -4,10 +4,35 @@
              x:Class="AutoWhats.Vistas.ConfigurarVoz">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Configura el sistema de lectura"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            
+            <Frame BackgroundColor="#0DC143" Padding="24" CornerRadius="0">
+                <Label Text="Configurar Voz" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            </Frame>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="chReadAll" IsChecked="True" Grid.Column="0" VerticalOptions="StartAndExpand" Margin="10,0,0,0"></CheckBox>
+                <Label Grid.Column="1" Text="Leer todos los mensajes?" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"></Label>
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Button Text="Seleccionar"></Button>
+
+                <Frame x:Name="ContenedorContactos">
+                    
+                    
+                </Frame>
+
+
+            </Grid>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

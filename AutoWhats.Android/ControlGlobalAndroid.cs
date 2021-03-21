@@ -7,7 +7,6 @@ using Android.Provider;
 using Android.Support.V4.App;
 using AutoWhats.Droid;
 using AutoWhats.Interfaces;
-using AutoWhats.Modelos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -27,13 +26,6 @@ namespace AutoWhats.Droid
 
 
 
-        public async Task<IList<Contacto>> GetContactListAsync()
-        {
-           
-
-            return null;
-
-        }
 
         public void ADVoiceReaderWhats()
         {
