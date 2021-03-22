@@ -4,11 +4,9 @@ using System.Text;
 
 namespace AutoWhats.Modelos
 {
-    class myViewModel
+    public class Contacto
     {
-  
-        public int ID { get; set; }
-
-        public string Text { get; set; }
+        public string nombre = "";
+        public string numero = "";
     }
 }

@@ -25,7 +25,7 @@
 
                 <Button Text="Seleccionar"></Button>
 
-                <Frame x:Name="ContenedorContactos">
+                <Frame BackgroundColor="Red" x:Name="ContenedorContactos">
                     
                     
                 </Frame>
@@ -33,6 +33,21 @@
 
             </Grid>
 
+            <ListView  x:Name="listaContactos" RowHeight="60">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="Olive">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text = "{Binding Name}" FontSize="24" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>
+                                    <Label Text = "{Binding Type}" AbsoluteLayout.LayoutBounds="50, 35, 200, 25"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
