@@ -6,7 +6,7 @@ namespace AutoWhats.Modelos
 {
     public class Contacto
     {
-        public string nombre = "";
-        public string numero = "";
+        public string nombre { get; set; }
+        public string numero { get; set; }
     }
 }
