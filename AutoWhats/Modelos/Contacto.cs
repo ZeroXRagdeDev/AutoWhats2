@@ -8,5 +8,6 @@ namespace AutoWhats.Modelos
     {
         public string nombre { get; set; }
         public string numero { get; set; }
+        public string foto { get; set; }
     }
 }

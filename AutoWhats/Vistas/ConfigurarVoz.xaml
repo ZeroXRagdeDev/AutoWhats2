@@ -4,12 +4,15 @@
              x:Class="AutoWhats.Vistas.ConfigurarVoz">
     <ContentPage.Content>
         <StackLayout>
+            
             <Frame BackgroundColor="#0DC143" Padding="24" CornerRadius="0">
                 <Label Text="Configurar Voz" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
+            
+            
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -20,12 +23,22 @@
             </Grid>
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Button Text="Seleccionar"></Button>
+                <Button Grid.Row="0" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="End"  
+                        Text="Seleccionar"
+                        BorderColor="BlueViolet" 
+                        IsVisible="False"
+                        x:Name="btnAddContacto"
+                        CornerRadius="10"></Button>
 
-                <Frame BackgroundColor="Red" x:Name="ContenedorContactos">
+                <Frame IsVisible="False" Grid.Row="1" BackgroundColor="Red" HorizontalOptions="CenterAndExpand" 
+                                               VerticalOptions="CenterAndExpand" 
+                                               HeightRequest="500" x:Name="ContenedorContactos">
                     
                     
                 </Frame>
@@ -33,20 +46,7 @@
 
             </Grid>
 
-            <ListView  x:Name="listaContactos" RowHeight="60">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="Olive">
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text = "{Binding Name}" FontSize="24" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40"/>
-                                    <Label Text = "{Binding Type}" AbsoluteLayout.LayoutBounds="50, 35, 200, 25"/>
-                                </StackLayout>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+
             
         </StackLayout>
     </ContentPage.Content>

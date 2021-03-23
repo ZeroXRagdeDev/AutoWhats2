@@ -23,20 +23,38 @@ namespace AutoWhats.Vistas
             InitializeComponent();
             BindingContext = this;
             chReadAll.CheckedChanged += ChReadAll_CheckedChanged;
+            btnAddContacto.Clicked += BtnAddContacto_Clicked;
+        }
+
+        private async void BtnAddContacto_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Contacto nuevo_contacto = await ControlContactos.obtenerContacto().Result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("FLASH:" + ex);
+            }
+
         }
 
         private void ChReadAll_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             if (!chReadAll.IsChecked)
             {
-
-                veggies= new ObservableCollection<Contacto>();
+                btnAddContacto.IsVisible = true;
+                ContenedorContactos.IsVisible = true;
+                veggies = new ObservableCollection<Contacto>();
 
                 ListView listaContactos = new ListView();
                 listaContactos.RowHeight = 60;
 
                 listaContactos.ItemTemplate = new DataTemplate(typeof(CustomViewCell));
                 
+               
+
+
                 veggies.Add(new Contacto { nombre = "ED", numero = "52545" });
                 veggies.Add(new Contacto { nombre = "Edgar", numero = "745454" });
                 veggies.Add(new Contacto { nombre = "ruby", numero = "561321321321322545" });
@@ -50,6 +68,8 @@ namespace AutoWhats.Vistas
 
             }
             else {
+                ContenedorContactos.IsVisible = false;
+                btnAddContacto.IsVisible = false;
                 ContenedorContactos.Content = null;
             }
         }
