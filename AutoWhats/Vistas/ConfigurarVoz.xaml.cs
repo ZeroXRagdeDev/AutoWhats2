@@ -1,5 +1,7 @@
 ﻿using AutoWhats.Modelos;
 using AutoWhats.Tools;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,8 +17,8 @@ namespace AutoWhats.Vistas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ConfigurarVoz : ContentPage
     {
-
-        public ObservableCollection<Contacto> veggies { get; set; }
+        
+        public ObservableCollection<Contacto> contactos { get; set; }
 
         public ConfigurarVoz()
         {
@@ -26,11 +28,22 @@ namespace AutoWhats.Vistas
             btnAddContacto.Clicked += BtnAddContacto_Clicked;
         }
 
-        private async void BtnAddContacto_Clicked(object sender, EventArgs e)
+        private void BtnAddContacto_Clicked(object sender, EventArgs e)
+        {
+            BtnAddContacto_ClickedAsync();
+        }
+
+        private async Task BtnAddContacto_ClickedAsync()
         {
             try
             {
-                Contacto nuevo_contacto = await ControlContactos.obtenerContacto().Result;
+                Contacto nuevo_contacto = await ControlContactos.obtenerContactoAsync();
+                contactos.Add(nuevo_contacto);
+
+                string json = JsonConvert.SerializeObject(contactos, Formatting.Indented);
+                ControlConfiguraciones.SaveData(json, "ContactosPermitidos");
+              
+
             }
             catch (Exception ex)
             {
@@ -39,28 +52,25 @@ namespace AutoWhats.Vistas
 
         }
 
+
         private void ChReadAll_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             if (!chReadAll.IsChecked)
             {
                 btnAddContacto.IsVisible = true;
                 ContenedorContactos.IsVisible = true;
-                veggies = new ObservableCollection<Contacto>();
+                contactos = new ObservableCollection<Contacto>();
 
                 ListView listaContactos = new ListView();
                 listaContactos.RowHeight = 60;
 
                 listaContactos.ItemTemplate = new DataTemplate(typeof(CustomViewCell));
-                
-               
+
+                loadContactos();
 
 
-                veggies.Add(new Contacto { nombre = "ED", numero = "52545" });
-                veggies.Add(new Contacto { nombre = "Edgar", numero = "745454" });
-                veggies.Add(new Contacto { nombre = "ruby", numero = "561321321321322545" });
 
-
-                 listaContactos.ItemsSource = veggies;
+                 listaContactos.ItemsSource = contactos;
 
 
                 ContenedorContactos.Content = listaContactos;
@@ -73,5 +83,22 @@ namespace AutoWhats.Vistas
                 ContenedorContactos.Content = null;
             }
         }
+
+
+
+        private void loadContactos() {
+
+            string json_contactos = ControlConfiguraciones.ReadData("ContactosPermitidos");
+            contactos = JsonConvert.DeserializeObject<ObservableCollection<Contacto>>(json_contactos);
+            /*
+            contactos.Add(new Contacto { nombre = "ED", numero = "52545" });
+            contactos.Add(new Contacto { nombre = "Edgar", numero = "745454" });
+            contactos.Add(new Contacto { nombre = "ruby", numero = "561321321321322545" });*/
+        }
+
+
+
+
+
     }
 }

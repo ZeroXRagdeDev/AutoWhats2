@@ -5,7 +5,7 @@
 
     <StackLayout>
         <Frame BackgroundColor="#0DC143" Padding="24" CornerRadius="0">
-            <Label Text="AutoWhat" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            <Label Text="AutoWhats" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <Label Text="Comienza a usar AutoWhat" HorizontalOptions="CenterAndExpand" FontSize="Title" Padding="30,10,30,10"/>
         <Label Text="Activa el Servicio de NLService para que la app funcione" FontSize="16" Padding="30,0,30,0"/>

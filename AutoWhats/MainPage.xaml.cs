@@ -20,11 +20,16 @@ namespace AutoWhats
             btnActServ.Clicked += BtnActServ_Clicked;
             chVoz.CheckedChanged += ChVoz_CheckedChanged;
             btnConfigLector.Clicked += BtnConfigLecto_Clicked;
+          
         }
 
         private void BtnConfigLecto_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new NavigationPage(new ConfigurarVoz());
+            foreach (var folder in Enum.GetValues(typeof(Environment.SpecialFolder))) { 
+                Console.WriteLine("{0}={1}", folder, Environment.GetFolderPath((Environment.SpecialFolder)folder)); 
+            
+            }
+            // App.Current.MainPage = new NavigationPage(new ConfigurarVoz());
         }
 
         private void ChVoz_CheckedChanged(object sender, CheckedChangedEventArgs e)
