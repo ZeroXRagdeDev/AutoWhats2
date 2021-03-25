@@ -24,13 +24,6 @@ namespace AutoWhats.Modelos
 
         public Contacto() {
             cantidad_telefono++;
-            foreach (ContactPhone telefono in phones) {
-                if (telefono.PhoneNumber != "") {
-                    numero = telefono.PhoneNumber;
-                    break;
-                }
-                nombre = displayName;
-            }
         }
     }
 

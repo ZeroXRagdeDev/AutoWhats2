@@ -15,10 +15,14 @@
                     <RowDefinition Height="20"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="160"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <CheckBox x:Name="chReadAll" IsChecked="True" Grid.Column="0" VerticalOptions="StartAndExpand" Margin="10,0,0,0"></CheckBox>
+                <CheckBox Scale="1.2" 
+                          x:Name="chReadAll" 
+                          IsChecked="True"
+                          Grid.Column="0" 
+                          VerticalOptions="StartAndExpand" Margin="10,0,0,0"></CheckBox>
                 <Label Grid.Column="1" Text="Leer todos los mensajes?" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"></Label>
             </Grid>
             <Grid>
@@ -30,7 +34,7 @@
                 <Button Grid.Row="0" 
                         HorizontalOptions="Center" 
                         VerticalOptions="End"  
-                        Text="Seleccionar"
+                        Text="Seleccionar Contacto"
                         BorderColor="BlueViolet" 
                         IsVisible="False"
                         x:Name="btnAddContacto"
@@ -44,6 +48,30 @@
                 </Frame>
 
 
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                  <Button Text=""
+                     Grid.Row="0"
+                     Scale="0.1"
+                    WidthRequest="32"
+                    Margin="0,0,0,0"
+                    BorderWidth="2"
+                    BorderColor="Accent"
+                    BorderRadius="2"
+                    IsEnabled="True"
+                    FontSize="Small"
+                    Padding="20"
+                    ContentLayout="Bottom">
+                        <Button.Image>
+                            <OnPlatform x:TypeArguments="FileImageSource" Android="btn_back.png" />
+                        </Button.Image>
+                </Button>
             </Grid>
 
 

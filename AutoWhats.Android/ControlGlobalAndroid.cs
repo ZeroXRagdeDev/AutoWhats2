@@ -17,15 +17,15 @@ using static Android.Manifest;
 [assembly: Dependency(typeof(ControlGlobalAndroid))]
 namespace AutoWhats.Droid
 {
-   
-    public class ControlGlobalAndroid: XamarinAndroidGlobal
+
+    public class ControlGlobalAndroid : XamarinAndroidGlobal
     {
         public static Context contextApp;
-        public static bool estado_voice=false;
+        public static bool estado_voice = false;
 
 
 
-
+            
 
         public void ADVoiceReaderWhats()
         {

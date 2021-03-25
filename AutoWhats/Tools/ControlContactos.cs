@@ -33,7 +33,16 @@ namespace AutoWhats.Tools
                     string displayName = contact.DisplayName;
                     List<ContactPhone> phones = contact.Phones; // List of phone numbers
                     List <ContactEmail> emails = contact.Emails; // List of email addresses
-
+                    string numero = "";
+                    foreach (ContactPhone telefono in phones)
+                    {
+                        if (telefono.PhoneNumber != "")
+                        {
+                            numero = telefono.PhoneNumber;
+                            break;
+                        }
+                        
+                    }
                     tmp = new Contacto() { 
                       id=id,
                       namePrefix=namePrefix,
@@ -42,7 +51,9 @@ namespace AutoWhats.Tools
                       familyName=familyName,
                       nameSuffix=nameSuffix,
                       displayName=displayName,
-                      phones=phones,
+                      nombre=displayName,
+                      numero= numero,
+                      phones =phones,
                       emails=emails
                     };
                     

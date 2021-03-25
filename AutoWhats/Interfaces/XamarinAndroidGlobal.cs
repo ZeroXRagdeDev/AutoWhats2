@@ -10,5 +10,6 @@ namespace AutoWhats.Interfaces
     {
         void ConfigurarNotificacion();
         void ADVoiceReaderWhats();
+        
     }
 }
