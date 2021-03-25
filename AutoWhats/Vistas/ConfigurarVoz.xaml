@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Controles="clr-namespace:AutoWhats.Controles"
+             NavigationPage.HasNavigationBar="False" 
              x:Class="AutoWhats.Vistas.ConfigurarVoz">
     <ContentPage.Content>
         <StackLayout>
@@ -35,12 +37,11 @@
                         HorizontalOptions="Center" 
                         VerticalOptions="End"  
                         Text="Seleccionar Contacto"
-                        BorderColor="Red" 
                         IsVisible="False"
                         x:Name="btnAddContacto"
                         CornerRadius="10"></Button>
 
-                <Frame IsVisible="False" Grid.Row="1" BackgroundColor="Red" HorizontalOptions="CenterAndExpand" 
+                <Frame IsVisible="False" Grid.Row="1" BackgroundColor="White" HorizontalOptions="CenterAndExpand" 
                                                VerticalOptions="CenterAndExpand" 
                                                HeightRequest="500" x:Name="ContenedorContactos">
                     
@@ -49,30 +50,26 @@
 
 
             </Grid>
-            <Grid>
+            
+            
+            <Grid HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Green">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="360"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                  <Button Text=""
-                     Grid.Row="0"
-                     Scale="0.09"
-                    WidthRequest="50"
-                    Margin="0,0,0,0"
-                    BorderWidth="2"
-                    BorderColor="Red"
-                          BackgroundColor="Pink"
-                    BorderRadius="2"
-                    IsEnabled="True"
-                    FontSize="Small"
-                    Padding="100,10,10,100"
-                    ContentLayout="Bottom">
-                        <Button.Image>
-                            <OnPlatform x:TypeArguments="FileImageSource" Android="btn_back.png" />
-                        </Button.Image>
-                </Button>
+
+
+
+                <Controles:CustomButton Grid.Row="0" 
+                                        Grid.Column="0"  
+                                        x:Name="btnBack"
+                                        Source="btn_back.png">
+                    
+                </Controles:CustomButton>
+
+                
             </Grid>
 
 

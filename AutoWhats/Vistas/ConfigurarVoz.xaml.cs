@@ -29,7 +29,7 @@ namespace AutoWhats.Vistas
             BindingContext = this;
             chReadAll.CheckedChanged += ChReadAll_CheckedChanged;
             btnAddContacto.Clicked += BtnAddContacto_Clicked;
-
+            btnBack.Clicked += BtnBack_Clicked;
 
 
             var status =  Permissions.CheckStatusAsync<Permissions.ContactsRead>();
@@ -49,6 +49,11 @@ namespace AutoWhats.Vistas
                 Preferences.Set("LeerTodos", true);
             }
            
+        }
+
+        private void BtnBack_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
         }
 
         private void BtnAddContacto_Clicked(object sender, EventArgs e)

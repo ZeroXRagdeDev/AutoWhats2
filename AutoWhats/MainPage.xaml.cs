@@ -36,10 +36,11 @@ namespace AutoWhats
             }
         }
 
-        private void BtnConfigLecto_Clicked(object sender, EventArgs e)
+        private async void BtnConfigLecto_Clicked(object sender, EventArgs e)
         {
-
-             App.Current.MainPage = new NavigationPage(new ConfigurarVoz());
+          //  App.Current.MainPage =  new NavigationPage(new ConfigurarVoz());
+            await Navigation.PushModalAsync(new ConfigurarVoz());
+            // App.Current.MainPage = new NavigationPage(new ConfigurarVoz());
         }
 
         private void ChVoz_CheckedChanged(object sender, CheckedChangedEventArgs e)
