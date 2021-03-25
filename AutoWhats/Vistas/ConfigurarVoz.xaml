@@ -35,7 +35,7 @@
                         HorizontalOptions="Center" 
                         VerticalOptions="End"  
                         Text="Seleccionar Contacto"
-                        BorderColor="BlueViolet" 
+                        BorderColor="Red" 
                         IsVisible="False"
                         x:Name="btnAddContacto"
                         CornerRadius="10"></Button>
@@ -51,22 +51,23 @@
             </Grid>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="360"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                   <Button Text=""
                      Grid.Row="0"
-                     Scale="0.1"
-                    WidthRequest="32"
+                     Scale="0.09"
+                    WidthRequest="50"
                     Margin="0,0,0,0"
                     BorderWidth="2"
-                    BorderColor="Accent"
+                    BorderColor="Red"
+                          BackgroundColor="Pink"
                     BorderRadius="2"
                     IsEnabled="True"
                     FontSize="Small"
-                    Padding="20"
+                    Padding="100,10,10,100"
                     ContentLayout="Bottom">
                         <Button.Image>
                             <OnPlatform x:TypeArguments="FileImageSource" Android="btn_back.png" />
