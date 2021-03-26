@@ -6,6 +6,7 @@ namespace AutoWhats.Modelos
 {
     public class Dispositivo
     {
-        public string direccion = "";
+        public string nombre { get; set; }
+        public string tipo { get; set; }
     }
 }

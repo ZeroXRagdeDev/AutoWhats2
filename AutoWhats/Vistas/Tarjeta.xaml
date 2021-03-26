@@ -5,7 +5,7 @@
              Margin="0" 
              x:Class="AutoWhats.Vistas.Tarjeta">
   <ContentView.Content >
-        <Grid>
+        <Grid x:Name="gridPrincipal">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
@@ -15,6 +15,8 @@
             </Grid.ColumnDefinitions>
 
             <Label IsVisible="false" Text="{Binding id}" x:Name="idContacto"></Label>
+            <Label IsVisible="false" Text="{Binding tipo}" x:Name="tipoObjeto"></Label>
+
 
 
 
@@ -43,11 +45,7 @@
                    TextColor="White"></Label>
             </Grid>
 
-            <ImageButton BackgroundColor="DarkRed" 
-                         Grid.Column="1" 
-                         Grid.Row="0" 
-                         x:Name="btnDelete"
-                         Source="btn_delete"></ImageButton>
+
 
 
 

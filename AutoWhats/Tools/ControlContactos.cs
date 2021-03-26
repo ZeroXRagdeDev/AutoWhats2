@@ -57,7 +57,9 @@ namespace AutoWhats.Tools
         }
         public static void loadContactos()
         {
-
+            if (contactos is null) {
+                contactos = new ObservableCollection<Contacto>();
+            }
             string json_contactos = Preferences.Get("Contactos", "");
            
 
@@ -113,7 +115,8 @@ namespace AutoWhats.Tools
                       nombre=displayName,
                       numero= numero,
                       phones =phones,
-                      emails=emails
+                      emails=emails,
+                      tipo= "CONTACTO"
                     };
                     
                     return tmp;

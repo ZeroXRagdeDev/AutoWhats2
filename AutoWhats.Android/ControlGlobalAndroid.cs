@@ -49,7 +49,8 @@ namespace AutoWhats.Droid
             ICollection<BluetoothDevice> devices = adapter.BondedDevices;
             foreach (BluetoothDevice device in devices) {
                 Dispositivo destmp = new Dispositivo();
-                destmp.direccion=device.Address;
+                destmp.nombre=device.Name;
+                destmp.tipo = "DISPOSITIVO";
                 tmp.Add(destmp);
             }
 

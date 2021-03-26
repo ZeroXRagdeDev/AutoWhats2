@@ -45,11 +45,18 @@ namespace AutoWhats.Vistas
 
             if (Preferences.ContainsKey("LeerTodos"))
             {
-               // chReadAll.IsChecked = Preferences.Get("LeerTodos", true);
                 chReadAll.IsToggled = Preferences.Get("LeerTodos", true);
             }
             else {
                 Preferences.Set("LeerTodos", true);
+            }
+
+            if (Preferences.ContainsKey("CondicionDispositivo"))
+            {
+                chDisp.IsToggled = Preferences.Get("CondicionDispositivo", true);
+            }
+            else {
+                Preferences.Set("CondicionDispositivo", true);
             }
            
         }
@@ -61,21 +68,25 @@ namespace AutoWhats.Vistas
 
             Preferences.Set("CondicionDispositivo", chDisp.IsToggled);
 
-            if (!chDisp.IsToggled)
+            if (chDisp.IsToggled)
             {
                 ContenedorDispositivos.IsVisible = true;
-                btnAddContacto.IsVisible = true;
-                ContenedorContactos.IsVisible = true;
                 gridDisContect.IsVisible = true;
 
-                ListView listaContactos = new ListView();
-                listaContactos.RowHeight = 60;
-                listaContactos.ItemTemplate = new DataTemplate(typeof(CustomViewCell));
+                ListView listaDispositivos = new ListView();
+                listaDispositivos.RowHeight = 60;
+                listaDispositivos.ItemTemplate = new DataTemplate(typeof(CustomViewCell));
 
-                //RECARGAMOS LOS CONTACTOS
+                //RECARGAMOS LOS DISPOSITIVO
+                ControlDispositivos.loadDispositivos();
 
 
-                ContenedorContactos.Content = listaContactos;
+                listaDispositivos.ItemsSource = ControlDispositivos.dispositivos;
+
+
+
+
+               ContenedorDispositivos.Content = listaDispositivos;
 
 
             }
@@ -96,7 +107,7 @@ namespace AutoWhats.Vistas
 
         private void BtnAddContacto_Clicked(object sender, EventArgs e)
         {
-            BtnAddContacto_ClickedAsync();
+            _ = BtnAddContacto_ClickedAsync();
         }
 
         private async Task BtnAddContacto_ClickedAsync()
@@ -111,7 +122,8 @@ namespace AutoWhats.Vistas
                 }
                 ControlContactos.contactos.Add(nuevo_contacto);
                 ControlContactos.saveContactos();
-
+                ControlContactos.loadContactos();
+                reloadLista();
             }
             catch (Exception ex)
             {
@@ -119,30 +131,33 @@ namespace AutoWhats.Vistas
             }
 
         }
+        private void reloadLista() {
 
+            btnAddContacto.IsVisible = true;
+            ContenedorContactos.IsVisible = true;
+            gridDisContect.IsVisible = true;
+
+            ListView listaContactos = new ListView();
+            listaContactos.RowHeight = 60;
+
+            listaContactos.ItemTemplate = new DataTemplate(typeof(CustomViewCell));
+
+            ControlContactos.loadContactos();
+
+
+
+            listaContactos.ItemsSource = ControlContactos.contactos;
+
+
+            ContenedorContactos.Content = listaContactos;
+
+        }
         private void ChReadAll_Toggled(object sender, ToggledEventArgs e)
         {
             Preferences.Set("LeerTodos", chReadAll.IsToggled);
             if (!chReadAll.IsToggled)
             {
-                btnAddContacto.IsVisible = true;
-                ContenedorContactos.IsVisible = true;
-                gridDisContect.IsVisible = true;
-
-                ListView listaContactos = new ListView();
-                listaContactos.RowHeight = 60;
-
-                listaContactos.ItemTemplate = new DataTemplate(typeof(CustomViewCell));
-
-                ControlContactos.loadContactos();
-
-
-
-                listaContactos.ItemsSource = ControlContactos.contactos;
-
-
-                ContenedorContactos.Content = listaContactos;
-
+                reloadLista();
 
             }
             else

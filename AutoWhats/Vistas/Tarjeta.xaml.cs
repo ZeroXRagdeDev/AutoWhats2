@@ -13,11 +13,36 @@ namespace AutoWhats.Vistas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Tarjeta : ContentView
     {
+
+     
+        public ImageButton btnDel { get; set; }
+
         public Tarjeta()
         {
             InitializeComponent();
-            btnDelete.Clicked += BtnDelete_Clicked;
+            
+
+
+
+            btnDel = new ImageButton {
+              BackgroundColor=Color.DarkRed,
+              Source="btn_delete"
+            };
+            btnDel.Clicked += BtnDelete_Clicked;
+
+            gridPrincipal.Children.Add(btnDel, 1,0);
+
+            switch (tipoObjeto.Text) {
+                case "DISPOSITIVO":
+                    btnDel.IsVisible = false;
+                    break;
+                case "CONTACTO":
+
+                    break;
+            }
         }
+        public string getTipo() { return tipoObjeto.Text; }
+
 
         private void BtnDelete_Clicked(object sender, EventArgs e)
         {
