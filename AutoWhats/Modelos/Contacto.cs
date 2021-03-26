@@ -11,8 +11,9 @@ namespace AutoWhats.Modelos
         public string nombre { get; set; }
         public string numero { get; set; }
         public string foto { get; set; }
+        public string id  { get; set; }
 
-        public string id = "";
+
         public string namePrefix = "";
         public string givenName = "";
         public string middleName = "";

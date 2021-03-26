@@ -19,7 +19,7 @@ namespace AutoWhats.Vistas
     public partial class ConfigurarVoz : ContentPage
     {
         
-        public ObservableCollection<Contacto> contactos { get; set; }
+      
 
         public ConfigurarVoz()
         {
@@ -27,9 +27,11 @@ namespace AutoWhats.Vistas
 
 
             BindingContext = this;
-            chReadAll.CheckedChanged += ChReadAll_CheckedChanged;
+            chReadAll.Toggled += ChReadAll_Toggled;
+            //chReadAll.CheckedChanged += ChReadAll_CheckedChanged;
             btnAddContacto.Clicked += BtnAddContacto_Clicked;
             btnBack.Clicked += BtnBack_Clicked;
+            chDisp.Toggled += ChDisp_Toggled;
 
 
             var status =  Permissions.CheckStatusAsync<Permissions.ContactsRead>();
@@ -43,12 +45,48 @@ namespace AutoWhats.Vistas
 
             if (Preferences.ContainsKey("LeerTodos"))
             {
-                chReadAll.IsChecked = Preferences.Get("LeerTodos", true);
+               // chReadAll.IsChecked = Preferences.Get("LeerTodos", true);
+                chReadAll.IsToggled = Preferences.Get("LeerTodos", true);
             }
             else {
                 Preferences.Set("LeerTodos", true);
             }
            
+        }
+
+        private void ChDisp_Toggled(object sender, ToggledEventArgs e)
+        {
+           
+
+
+            Preferences.Set("CondicionDispositivo", chDisp.IsToggled);
+
+            if (!chDisp.IsToggled)
+            {
+                ContenedorDispositivos.IsVisible = true;
+                btnAddContacto.IsVisible = true;
+                ContenedorContactos.IsVisible = true;
+                gridDisContect.IsVisible = true;
+
+                ListView listaContactos = new ListView();
+                listaContactos.RowHeight = 60;
+                listaContactos.ItemTemplate = new DataTemplate(typeof(CustomViewCell));
+
+                //RECARGAMOS LOS CONTACTOS
+
+
+                ContenedorContactos.Content = listaContactos;
+
+
+            }
+            else
+            {
+                ContenedorDispositivos.IsVisible = false;
+            }
+
+
+
+
         }
 
         private void BtnBack_Clicked(object sender, EventArgs e)
@@ -71,11 +109,8 @@ namespace AutoWhats.Vistas
                     btnAddContacto.Text = "Seleccionar Contacto";
                     return;
                 }
-                contactos.Add(nuevo_contacto);
-
-                string json = JsonConvert.SerializeObject(contactos, Formatting.Indented);
-                Preferences.Set("Contactos",json);
-              
+                ControlContactos.contactos.Add(nuevo_contacto);
+                ControlContactos.saveContactos();
 
             }
             catch (Exception ex)
@@ -85,33 +120,33 @@ namespace AutoWhats.Vistas
 
         }
 
-
-        private void ChReadAll_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        private void ChReadAll_Toggled(object sender, ToggledEventArgs e)
         {
-            Preferences.Set("LeerTodos", chReadAll.IsChecked);
-            if (!chReadAll.IsChecked)
+            Preferences.Set("LeerTodos", chReadAll.IsToggled);
+            if (!chReadAll.IsToggled)
             {
                 btnAddContacto.IsVisible = true;
                 ContenedorContactos.IsVisible = true;
-                contactos = new ObservableCollection<Contacto>();
+                gridDisContect.IsVisible = true;
 
                 ListView listaContactos = new ListView();
                 listaContactos.RowHeight = 60;
 
                 listaContactos.ItemTemplate = new DataTemplate(typeof(CustomViewCell));
 
-                loadContactos();
+                ControlContactos.loadContactos();
 
 
 
-                 listaContactos.ItemsSource = contactos;
+                listaContactos.ItemsSource = ControlContactos.contactos;
 
 
                 ContenedorContactos.Content = listaContactos;
 
 
             }
-            else {
+            else
+            {
                 ContenedorContactos.IsVisible = false;
                 btnAddContacto.IsVisible = false;
                 ContenedorContactos.Content = null;
@@ -120,17 +155,6 @@ namespace AutoWhats.Vistas
 
 
 
-        private void loadContactos() {
-
-            string json_contactos = Preferences.Get("Contactos","");
-
-            if(json_contactos == "")
-            {
-                return;
-            }
-            contactos = JsonConvert.DeserializeObject<ObservableCollection<Contacto>>(json_contactos);
-
-        }
 
 
 

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="Green" 
+             Margin="0" 
+             x:Class="AutoWhats.Vistas.Tarjeta">
+  <ContentView.Content >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label IsVisible="false" Text="{Binding id}" x:Name="idContacto"></Label>
+
+
+
+
+
+
+            <Grid Grid.Column="0" Grid.Row="0" BackgroundColor="Black"  Padding="10" 
+              VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" 
+                   Grid.Column="0" 
+                   FontSize="14"
+                   Text="{Binding nombre}"
+                   TextColor="White"></Label>
+                <Label Grid.Row="1" 
+                   Grid.Column="0" 
+                   FontSize="8"
+                   Text="{Binding numero}"
+                   TextColor="White"></Label>
+            </Grid>
+
+            <ImageButton BackgroundColor="DarkRed" 
+                         Grid.Column="1" 
+                         Grid.Row="0" 
+                         x:Name="btnDelete"
+                         Source="btn_delete"></ImageButton>
+
+
+
+
+
+
+        </Grid>
+  </ContentView.Content>
+</ContentView>

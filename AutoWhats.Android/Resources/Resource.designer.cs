@@ -10996,16 +10996,19 @@ namespace AutoWhats.Droid
 			public const int notify_panel_notification_icon_bg = 2131165303;
 			
 			// aapt resource value: 0x7F070078
-			public const int roundedbg = 2131165304;
+			public const int p1 = 2131165304;
 			
 			// aapt resource value: 0x7F070079
-			public const int roundedbgdark = 2131165305;
+			public const int roundedbg = 2131165305;
 			
 			// aapt resource value: 0x7F07007A
-			public const int tooltip_frame_dark = 2131165306;
+			public const int roundedbgdark = 2131165306;
 			
 			// aapt resource value: 0x7F07007B
-			public const int tooltip_frame_light = 2131165307;
+			public const int tooltip_frame_dark = 2131165307;
+			
+			// aapt resource value: 0x7F07007C
+			public const int tooltip_frame_light = 2131165308;
 			
 			static Drawable()
 			{

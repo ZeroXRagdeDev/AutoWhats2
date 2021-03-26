@@ -20,15 +20,21 @@
                     <ColumnDefinition Width="50"></ColumnDefinition>
                     <ColumnDefinition Width="160"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <CheckBox Scale="1.2" 
-                          x:Name="chReadAll" 
-                          IsChecked="True"
+                
+                <Switch IsToggled="true" Scale="1.2" 
+                          x:Name="chReadAll"
                           Grid.Column="0" 
-                          VerticalOptions="StartAndExpand" Margin="10,0,0,0"></CheckBox>
+                          VerticalOptions="StartAndExpand" Margin="15,0,0,0"/>
+               
                 <Label Grid.Column="1" Text="Leer todos los mensajes?" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"></Label>
             </Grid>
+            
+            <!--EDITORES-->
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
@@ -49,9 +55,43 @@
                 </Frame>
 
 
+                <Grid Grid.Row="2" x:Name="gridDisContect" IsVisible="false">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"></ColumnDefinition>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Switch IsToggled="false" Scale="1.2" 
+                          x:Name="chDisp"
+                          Grid.Column="0" 
+                          VerticalOptions="StartAndExpand" Margin="15,0,0,0"/>
+
+                    <Label Grid.Column="1" Text="Leer Cuando este Conectado a: " HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"></Label>
+                </Grid>
+                <Button Grid.Row="3" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="End"  
+                        Text="Seleccionar Dispositivo"
+                        IsVisible="False"
+                        x:Name="btnAddDispositivos"
+                        CornerRadius="10"></Button>
+
+                <Frame IsVisible="False" Grid.Row="4" 
+                       BackgroundColor="White" HorizontalOptions="CenterAndExpand" 
+                                               VerticalOptions="CenterAndExpand" 
+                                               HeightRequest="500" x:Name="ContenedorDispositivos">
+                    
+                    
+                </Frame>
+
+
             </Grid>
             
-            
+ 
+<!--COMIENZA EL MENU FOOTER-->           
             <Grid HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Green">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"></RowDefinition>
@@ -59,7 +99,6 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
 
 
                 <Controles:CustomButton Grid.Row="0" 

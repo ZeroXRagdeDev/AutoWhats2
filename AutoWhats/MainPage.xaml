@@ -24,18 +24,20 @@
         <Frame BackgroundColor="#000040" Padding="24" CornerRadius="0">
             <Label Text="MENU" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
-        
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="125"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            
+            <Switch  IsToggled="false"
+                    VerticalOptions="FillAndExpand" HorizontalOptions="End" x:Name="chVoz" Grid.Row="0" Grid.Column="0"  />
 
-            <CheckBox x:Name="chVoz" Grid.Row="0" Grid.Column="0" VerticalOptions="Center"></CheckBox>
-            <Label Grid.Row="0" Grid.Column="1" Text="Leer Mensajes" FontSize="16" />
+            <Label  VerticalOptions="FillAndExpand" HorizontalOptions="End" Padding="1,1,15,1" Grid.Row="0" Grid.Column="1" Text="Leer Mensajes" FontSize="16" />
         </Grid>
 
 

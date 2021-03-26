@@ -1,4 +1,5 @@
 ﻿
+using AutoWhats.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,9 @@ namespace AutoWhats.Interfaces
     {
         void ConfigurarNotificacion();
         void ADVoiceReaderWhats();
-        
+        bool obtenerEstadoBluethooth();
+        List<Dispositivo> obtenerDispositivos();
+
+
     }
 }
