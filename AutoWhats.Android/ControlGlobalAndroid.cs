@@ -23,9 +23,13 @@ namespace AutoWhats.Droid
     {
         public static Context contextApp;
         public static bool estado_voice = false;
-        public static List<Contacto> android_contactos = new List<Contacto>();
-         
-        public  bool obtenerEstadoBluethooth() {
+        public static List<string> android_contactos = new List<string>();
+        public static List<string> android_dispositivos = new List<string>();
+
+        public static bool android_contactos_lectura_estado = false;
+        public static bool android_dispositivos_lectura_estado = false;
+
+        public bool obtenerEstadoBluethooth() {
 
 
             BluetoothAdapter adapter = BluetoothAdapter.DefaultAdapter;
@@ -46,6 +50,7 @@ namespace AutoWhats.Droid
 
             BluetoothAdapter adapter = BluetoothAdapter.DefaultAdapter;
             List<Dispositivo> tmp = new List<Dispositivo>();
+
             ICollection<BluetoothDevice> devices = adapter.BondedDevices;
             foreach (BluetoothDevice device in devices) {
                 Dispositivo destmp = new Dispositivo();
@@ -86,14 +91,31 @@ namespace AutoWhats.Droid
         }
 
 
-        public void setDatos(string tipo,string datos)
+        public void setDatos(List<string> datos,string tipo)
         {
             switch (tipo) {
+                case "CONTACTOS":
+                    android_contactos = datos;
+                    break;
                 case "DISPOSITIVO":
-
-
+                    android_dispositivos = datos;
                     break;
             
+            }
+        }
+
+        public void setDatos(bool estado, string tipo)
+        {
+
+            switch (tipo)
+            {
+                case "CONTACTOS":
+                    android_contactos_lectura_estado = estado;
+                    break;
+                case "DISPOSITIVO":
+                    android_dispositivos_lectura_estado = estado;
+                    break;
+
             }
         }
     }

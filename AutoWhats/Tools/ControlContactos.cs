@@ -1,4 +1,5 @@
-﻿using AutoWhats.Modelos;
+﻿using AutoWhats.Interfaces;
+using AutoWhats.Modelos;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,11 @@ namespace AutoWhats.Tools
                 return;
             }
             contactos = JsonConvert.DeserializeObject<ObservableCollection<Contacto>>(json_contactos);
+            List<string> my_data = new List<string>();
+            foreach (Contacto c in contactos) {
+                 my_data.Add(c.nombre);
+            }
+            DependencyService.Get<XamarinAndroidGlobal>().setDatos(my_data,"DISPOSITIVOS");
 
         }
         public static async Task<Contacto> obtenerContactoAsync() {

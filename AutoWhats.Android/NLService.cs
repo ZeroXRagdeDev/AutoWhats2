@@ -60,6 +60,34 @@ namespace AutoWhats.Droid
                     string content = noty.TickerText.ToString();
                     //    TextToSpeech.SpeakAsync("Mensaje" );
                     //  TextToSpeech.SpeakAsync("de" );
+                    bool estao_lectura = ControlGlobalAndroid.estado_voice;
+
+                    if (estao_lectura) {
+
+                        if (ControlGlobalAndroid.android_contactos_lectura_estado)
+                        {
+
+
+                            if (ControlGlobalAndroid.android_dispositivos_lectura_estado)
+                            {
+
+
+                            }
+                            else { //TODOS CONTACTOS SELECCIONADOS
+
+
+                            
+                            }
+
+
+                        }
+                        else { //TODOS
+                        
+                        
+                        }
+                    
+                    }
+
 
                     if (ControlGlobalAndroid.estado_voice)
                     {
@@ -105,6 +133,14 @@ namespace AutoWhats.Droid
 
         }
 
+        public void leer(string titulo, string mensaje) {
+            
+            TextToSpeech.SpeakAsync(titulo);
+
+
+            TextToSpeech.SpeakAsync(mensaje);
+
+        }
         public override void OnNotificationRemoved(StatusBarNotification sbn)
         {
             base.OnNotificationRemoved(sbn);

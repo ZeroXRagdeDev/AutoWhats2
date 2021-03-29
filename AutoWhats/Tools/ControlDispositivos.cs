@@ -37,6 +37,11 @@ namespace AutoWhats.Tools
             List<Dispositivo> tmp = new List<Dispositivo>();
             List<Dispositivo> tmpFinal = new List<Dispositivo>();
 
+            List<string> contacto_seleccionado = new List<string>();
+
+        
+
+
             if (DependencyService.Get<XamarinAndroidGlobal>().obtenerEstadoBluethooth()) {
                 tmp = DependencyService.Get<XamarinAndroidGlobal>().obtenerDispositivos();
 
@@ -51,8 +56,10 @@ namespace AutoWhats.Tools
                     }
                     tmpFinal.Add(dispo);
                 }
-            }
 
+
+            }
+            DependencyService.Get<XamarinAndroidGlobal>().setDatos(contacto_seleccionado, "");
             return tmpFinal;
         }
     }

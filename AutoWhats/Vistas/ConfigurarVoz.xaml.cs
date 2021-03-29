@@ -87,7 +87,7 @@ namespace AutoWhats.Vistas
             {
                 ContenedorDispositivos.IsVisible = true;
                 gridDisContect.IsVisible = true;
-
+                DependencyService.Get<XamarinAndroidGlobal>().setDatos(true, "DISPOSITVOS");
                 ListView listaDispositivos = new ListView();
                 listaDispositivos.RowHeight = 60;
                 listaDispositivos.ItemTemplate = new DataTemplate(typeof(CustomViewCell));
@@ -101,6 +101,7 @@ namespace AutoWhats.Vistas
             }
             else
             {
+                DependencyService.Get<XamarinAndroidGlobal>().setDatos(false, "DISPOSITVOS");
                 ContenedorDispositivos.IsVisible = false;
                 ControlDispositivos.estado = false;
             }
@@ -130,10 +131,14 @@ namespace AutoWhats.Vistas
                     btnAddContacto.Text = "Seleccionar Contacto";
                     return;
                 }
-                ControlContactos.contactos.Add(nuevo_contacto);
-                ControlContactos.saveContactos();
-                ControlContactos.loadContactos();
-                reloadLista();
+
+                if (!ControlContactos.contactos.Contains(nuevo_contacto)) {
+                    ControlContactos.contactos.Add(nuevo_contacto);
+                    ControlContactos.saveContactos();
+                    ControlContactos.loadContactos();
+                    reloadLista();
+                }
+
             }
             catch (Exception ex)
             {
@@ -167,11 +172,13 @@ namespace AutoWhats.Vistas
             Preferences.Set("LeerTodos", chReadAll.IsToggled);
             if (!chReadAll.IsToggled)
             {
+                DependencyService.Get<XamarinAndroidGlobal>().setDatos(false, "CONTACTOS");
                 reloadLista();
                 ControlContactos.estado = false;
             }
             else
             {
+                DependencyService.Get<XamarinAndroidGlobal>().setDatos(true, "CONTACTOS");
                 ContenedorContactos.IsVisible = false;
                 btnAddContacto.IsVisible = false;
                 ContenedorContactos.Content = null;
