@@ -8,5 +8,7 @@ namespace AutoWhats.Modelos
     {
         public string nombre { get; set; }
         public string tipo { get; set; }
+        public bool marcado { get; set; }
+
     }
 }

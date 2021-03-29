@@ -13,6 +13,8 @@ namespace AutoWhats.Interfaces
         void ADVoiceReaderWhats();
         bool obtenerEstadoBluethooth();
         List<Dispositivo> obtenerDispositivos();
+        void setDatos(string tipo,string datos);
+
 
 
     }

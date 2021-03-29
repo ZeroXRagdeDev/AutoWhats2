@@ -51,6 +51,15 @@ namespace AutoWhats.Vistas
                 Preferences.Set("LeerTodos", true);
             }
 
+            if (!chReadAll.IsToggled)
+            {
+                reloadLista();
+
+            }
+
+
+
+
             if (Preferences.ContainsKey("CondicionDispositivo"))
             {
                 chDisp.IsToggled = Preferences.Get("CondicionDispositivo", true);
@@ -58,7 +67,13 @@ namespace AutoWhats.Vistas
             else {
                 Preferences.Set("CondicionDispositivo", true);
             }
-           
+
+            if (chDisp.IsToggled) {
+                ContenedorDispositivos.IsVisible = true;
+                gridDisContect.IsVisible = true;
+
+            }
+
         }
 
         private void ChDisp_Toggled(object sender, ToggledEventArgs e)
@@ -79,20 +94,15 @@ namespace AutoWhats.Vistas
 
                 //RECARGAMOS LOS DISPOSITIVO
                 ControlDispositivos.loadDispositivos();
-
-
                 listaDispositivos.ItemsSource = ControlDispositivos.dispositivos;
-
-
-
-
                ContenedorDispositivos.Content = listaDispositivos;
-
+                ControlDispositivos.estado = true;
 
             }
             else
             {
                 ContenedorDispositivos.IsVisible = false;
+                ControlDispositivos.estado = false;
             }
 
 
@@ -158,13 +168,14 @@ namespace AutoWhats.Vistas
             if (!chReadAll.IsToggled)
             {
                 reloadLista();
-
+                ControlContactos.estado = false;
             }
             else
             {
                 ContenedorContactos.IsVisible = false;
                 btnAddContacto.IsVisible = false;
                 ContenedorContactos.Content = null;
+                ControlContactos.estado = true;
             }
         }
 

@@ -36,6 +36,7 @@
                 <Label Grid.Row="0" 
                    Grid.Column="0" 
                    FontSize="14"
+                   x:Name="blueName"
                    Text="{Binding nombre}"
                    TextColor="White"></Label>
                 <Label Grid.Row="1" 

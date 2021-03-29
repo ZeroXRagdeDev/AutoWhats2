@@ -12,18 +12,7 @@ namespace AutoWhats.Tools
     public class CustomViewCell : ViewCell
     {
         Tarjeta card;
-        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            string tipo = card.getTipo();
-            Console.WriteLine(tipo);
 
-        }
-        protected override void OnChildAdded(Element child)
-        {
-            base.OnChildAdded(child);
-            string tipo = card.getTipo();
-            Console.WriteLine(tipo);
-        }
 
         public CustomViewCell()
         {

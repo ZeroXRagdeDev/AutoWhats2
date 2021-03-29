@@ -14,7 +14,7 @@ namespace AutoWhats.Tools
     {
 
         public static ObservableCollection<Contacto> contactos { get; set; }
-
+        public static bool estado = false;
 
         public static bool removeContacto(string id) {
 

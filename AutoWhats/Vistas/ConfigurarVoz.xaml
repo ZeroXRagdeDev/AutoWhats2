@@ -54,7 +54,7 @@
                 </Frame>
 
 
-                <Grid Grid.Row="2" x:Name="gridDisContect" IsVisible="false">
+                <Grid Grid.Row="2" x:Name="gridDisContect" IsVisible="true">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20"></RowDefinition>
                     </Grid.RowDefinitions>

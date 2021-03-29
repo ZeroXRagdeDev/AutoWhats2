@@ -23,7 +23,7 @@ namespace AutoWhats.Droid
     {
         public static Context contextApp;
         public static bool estado_voice = false;
-
+        public static List<Contacto> android_contactos = new List<Contacto>();
          
         public  bool obtenerEstadoBluethooth() {
 
@@ -86,7 +86,15 @@ namespace AutoWhats.Droid
         }
 
 
+        public void setDatos(string tipo,string datos)
+        {
+            switch (tipo) {
+                case "DISPOSITIVO":
 
 
+                    break;
+            
+            }
+        }
     }
 }
