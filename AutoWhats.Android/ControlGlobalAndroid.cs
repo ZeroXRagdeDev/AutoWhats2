@@ -3,13 +3,17 @@ using Android;
 using Android.Bluetooth;
 using Android.Content;
 using Android.Database;
+using Android.OS;
 using Android.Provider;
 using Android.Support.V4.App;
 using AutoWhats.Droid;
 using AutoWhats.Interfaces;
 using AutoWhats.Modelos;
+using Java.Util;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using static Android.Manifest;
 
@@ -45,16 +49,105 @@ namespace AutoWhats.Droid
             return true;
 
         }
+        public static string obtenerNombreDeviceConectado() {
 
-        public List<Dispositivo> obtenerDispositivos() {
+            List<Dispositivo> dispo =  obtenerDispositivos(true);
+
+            foreach (Dispositivo dispositivo in dispo) {
+                if (checkEstadoBluetooth(dispositivo.uuid, dispositivo.direccion)) {
+                    return dispositivo.nombre;
+                }
+            }
+
+            return "";
+
+
+        }
+ 
+        public static bool checkEstadoBluetooth(UUID uuid,string address) {
+
+
+            BluetoothAdapter adapter = BluetoothAdapter.DefaultAdapter;
+            BluetoothDevice device = adapter.GetRemoteDevice(address);
+
+            try {
+
+           
+             
+               var _socket = device.CreateRfcommSocketToServiceRecord(uuid);
+                _socket.Connect();
+
+
+                return true;
+
+
+            } catch(Exception ex) {
+                Console.WriteLine(ex);
+                return false;
+            }
+
+        }
+       
+        
+        public static List<Dispositivo> obtenerDispositivos(bool demo)
+        {
 
             BluetoothAdapter adapter = BluetoothAdapter.DefaultAdapter;
             List<Dispositivo> tmp = new List<Dispositivo>();
 
+
+            if (!adapter.IsEnabled)
+            {
+                return tmp;
+            }
+
+            ICollection<BluetoothDevice> devices = adapter.BondedDevices;
+            foreach (BluetoothDevice device in devices)
+            {
+
+
+                Dispositivo destmp = new Dispositivo();
+                /* if (checkEstadoBluetooth(device))
+                 {
+                     destmp.conectado = true;
+                 }
+                 else {
+                     destmp.conectado = false;
+                 }*/
+                destmp.uuid = device.GetUuids()[0].Uuid;
+                destmp.nombre = device.Name;
+                destmp.direccion = device.Address;
+
+                destmp.tipo = "DISPOSITIVO";
+                tmp.Add(destmp);
+            }
+
+
+
+
+            return tmp;
+
+        }
+        public List<Dispositivo> obtenerDispositivos() {
+           
+            BluetoothAdapter adapter = BluetoothAdapter.DefaultAdapter;
+            List<Dispositivo> tmp = new List<Dispositivo>();
+
+
+            if (!adapter.IsEnabled) {
+                return tmp;
+            }
+    
             ICollection<BluetoothDevice> devices = adapter.BondedDevices;
             foreach (BluetoothDevice device in devices) {
+
+
                 Dispositivo destmp = new Dispositivo();
+
+                destmp.uuid = device.GetUuids()[0].Uuid;
                 destmp.nombre=device.Name;
+                destmp.direccion=device.Address;
+              
                 destmp.tipo = "DISPOSITIVO";
                 tmp.Add(destmp);
             }

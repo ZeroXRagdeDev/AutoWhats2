@@ -13,6 +13,7 @@ using Android.Support.V4.App;
 using System.Collections.Generic;
 using Acr.UserDialogs;
 using AutoWhats.Interfaces;
+using Android.Bluetooth;
 
 namespace AutoWhats.Droid
 {
@@ -23,7 +24,8 @@ namespace AutoWhats.Droid
 
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-  
+
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -35,9 +37,12 @@ namespace AutoWhats.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
 
-
+            IntentFilter filter = new IntentFilter();
+            filter.AddAction(BluetoothDevice.ActionAclConnected);
+            filter.AddAction(BluetoothDevice.ActionAclDisconnectRequested);
+            filter.AddAction(BluetoothDevice.ActionAclDisconnected);
             Xamarin.Essentials.Preferences.Set("SetSubcription", true);
-
+RegisterReceiver(new MySampleBroadcastReceiver(), filter);
         
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
@@ -45,9 +50,31 @@ namespace AutoWhats.Droid
             LoadApplication(new App());
 
 
-        }
-    
 
+
+
+
+        }
+        [BroadcastReceiver(Enabled = true)]
+        [IntentFilter(new[] { "com.xamarin.example.TEST" })]
+        public class MySampleBroadcastReceiver : BroadcastReceiver
+        {
+            public override void OnReceive(Context context, Intent intent)
+            {
+
+                string action = intent.DataString;
+                BluetoothDevice device = (BluetoothDevice)intent.GetParcelableExtra(BluetoothDevice.ExtraDevice);
+
+                if (BluetoothDevice.ActionAclConnected.Equals(action))
+                {
+                  
+                }
+                else 
+                {
+                  
+                }
+            }
+        }
 
         public override void OnBackPressed()
         {

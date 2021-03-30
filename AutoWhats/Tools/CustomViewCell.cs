@@ -18,12 +18,8 @@ namespace AutoWhats.Tools
         {
 
             //instantiate each of our views
-
-             card = new Tarjeta();
-
+            card = new Tarjeta();
             Height = 100;
-
-
             View = card;
 
         }

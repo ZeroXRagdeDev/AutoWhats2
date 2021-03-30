@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Service.Notification;
 using Android.Support.V4.App;
 using Android.Util;
+using AutoWhats.Modelos;
 using Java.Lang;
 using System;
 using System.Collections.Generic;
@@ -66,24 +67,102 @@ namespace AutoWhats.Droid
 
                         if (ControlGlobalAndroid.android_contactos_lectura_estado)
                         {
+                            foreach (string contacto_ in ControlGlobalAndroid.android_contactos) {
+                                if (contacto_ == content)
+                                {
+                                    if (ControlGlobalAndroid.android_dispositivos_lectura_estado)
+                                    {
+                                        // List<Dispositivo> dispo = ControlGlobalAndroid.obtenerDispositivos();
+                                        string NOMBRE_ACTUAL_B = ControlGlobalAndroid.obtenerNombreDeviceConectado();
+                                        List<string> device_selec = ControlGlobalAndroid.android_dispositivos;
+                                        foreach (string dispositivo_actual in device_selec)
+                                        {
+                                            if (dispositivo_actual == NOMBRE_ACTUAL_B)
+                                            {//Si el dispositivo actual esta conectado
+                                             //Y esta en la lista de seleccionado se usa
 
+                                                TextToSpeech.SpeakAsync(content);
 
-                            if (ControlGlobalAndroid.android_dispositivos_lectura_estado)
-                            {
+                                                if (multiMensajes == null)
+                                                {
+                                                    string mensaje = contenedr.GetString(NotificationCompat.ExtraText);
+                                                    if (ControlGlobalAndroid.estado_voice)
+                                                    {
+                                                        TextToSpeech.SpeakAsync(mensaje);
+                                                    }
 
+                                                }
+                                                else
+                                                {
 
+                                                    foreach (string mensaje in multiMensajes)
+                                                    {
+                                                        if (ControlGlobalAndroid.estado_voice)
+                                                        {
+                                                            TextToSpeech.SpeakAsync(mensaje);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    { //TODOS CONTACTOS SELECCIONADOS
+
+                                            TextToSpeech.SpeakAsync(content);
+
+                                            if (multiMensajes == null)
+                                            {
+                                                string mensaje = contenedr.GetString(NotificationCompat.ExtraText);
+                                                if (ControlGlobalAndroid.estado_voice)
+                                                {
+                                                    TextToSpeech.SpeakAsync(mensaje);
+                                                }
+
+                                            }
+                                            else
+                                            {
+
+                                                foreach (string mensaje in multiMensajes)
+                                                {
+                                                    if (ControlGlobalAndroid.estado_voice)
+                                                    {
+                                                        TextToSpeech.SpeakAsync(mensaje);
+                                                    }
+                                                }
+                                            }
+                                    }
+                                }
                             }
-                            else { //TODOS CONTACTOS SELECCIONADOS
 
 
-                            
-                            }
 
 
                         }
                         else { //TODOS
-                        
-                        
+                            TextToSpeech.SpeakAsync(content);
+
+                            if (multiMensajes == null)
+                            {
+                                string mensaje = contenedr.GetString(NotificationCompat.ExtraText);
+                                if (ControlGlobalAndroid.estado_voice)
+                                {
+                                    TextToSpeech.SpeakAsync(mensaje);
+                                }
+
+                            }
+                            else
+                            {
+
+                                foreach (string mensaje in multiMensajes)
+                                {
+                                    if (ControlGlobalAndroid.estado_voice)
+                                    {
+                                        TextToSpeech.SpeakAsync(mensaje);
+                                    }
+                                }
+                            }
                         }
                     
                     }
@@ -91,29 +170,11 @@ namespace AutoWhats.Droid
 
                     if (ControlGlobalAndroid.estado_voice)
                     {
-                        TextToSpeech.SpeakAsync(content);
+                       
                     }
                     
 
 
-                    if (multiMensajes == null)
-                    {
-                        string mensaje = contenedr.GetString(NotificationCompat.ExtraText);
-                        if (ControlGlobalAndroid.estado_voice)
-                        {
-                            TextToSpeech.SpeakAsync(mensaje);
-                        }
-                        
-                    }
-                    else {
-
-                        foreach (string mensaje in multiMensajes) {
-                            if (ControlGlobalAndroid.estado_voice)
-                            {
-                                TextToSpeech.SpeakAsync(mensaje);
-                            }
-                        }
-                    }
 
 
 
