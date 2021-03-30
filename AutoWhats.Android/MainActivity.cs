@@ -64,7 +64,7 @@ RegisterReceiver(new MySampleBroadcastReceiver(), filter);
 
                 string action = intent.DataString;
                 BluetoothDevice device = (BluetoothDevice)intent.GetParcelableExtra(BluetoothDevice.ExtraDevice);
-
+                ///OCURRE CUANDO SE CONECTAR o desconecta
                 if (BluetoothDevice.ActionAclConnected.Equals(action))
                 {
                   

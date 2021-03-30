@@ -23,16 +23,35 @@ namespace AutoWhats
             //  chVoz.CheckedChanged += ChVoz_CheckedChanged;
             chVoz.Toggled += ChVoz_Toggled;
             btnConfigLector.Clicked += BtnConfigLecto_Clicked;
-           
-           
+
+
+            if (Preferences.ContainsKey("LeerTodos"))
+            {
+                bool estado_contactos_lectura = Preferences.Get("LeerTodos", true);
+                DependencyService.Get<XamarinAndroidGlobal>().setDatos(estado_contactos_lectura, "CONTACTOS");
+            }
+            else
+            {
+                DependencyService.Get<XamarinAndroidGlobal>().setDatos(true, "CONTACTOS");
+            }
+
+
+            if (Preferences.ContainsKey("CondicionDispositivo"))
+            {
+                bool estado_dispositivos_lectura = Preferences.Get("CondicionDispositivo", true);
+                DependencyService.Get<XamarinAndroidGlobal>().setDatos(estado_dispositivos_lectura, "DISPOSITVOS");
+            }
+            else
+            {
+                DependencyService.Get<XamarinAndroidGlobal>().setDatos(false, "DISPOSITVOS");
+            }
+
             if (Preferences.ContainsKey("EstadoVoz"))
             {
               //  chVoz.IsChecked = Preferences.Get("EstadoVoz", false);
                 chVoz.IsToggled = Preferences.Get("EstadoVoz", false);
-                if (chVoz.IsToggled)
-                {//if (chVoz.IsChecked) {
-                    DependencyService.Get<XamarinAndroidGlobal>().ADVoiceReaderWhats();
-                }
+                DependencyService.Get<XamarinAndroidGlobal>().ADVoiceReaderWhats(chVoz.IsToggled);
+                
             }
             else {
                // Preferences.Set("EstadoVoz", chVoz.IsChecked);
@@ -50,7 +69,7 @@ namespace AutoWhats
         private void ChVoz_Toggled(object sender, ToggledEventArgs e)
         {
             Preferences.Set("EstadoVoz", chVoz.IsToggled);
-            DependencyService.Get<XamarinAndroidGlobal>().ADVoiceReaderWhats();
+            DependencyService.Get<XamarinAndroidGlobal>().ADVoiceReaderWhats(chVoz.IsToggled);
         }
 
         private async void BtnConfigLecto_Clicked(object sender, EventArgs e)

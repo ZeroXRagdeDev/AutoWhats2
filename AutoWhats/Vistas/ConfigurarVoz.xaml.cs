@@ -56,7 +56,7 @@ namespace AutoWhats.Vistas
                 reloadLista();
 
             }
-
+            DependencyService.Get<XamarinAndroidGlobal>().setDatos(chReadAll.IsToggled, "CONTACTOS");
 
 
 
@@ -65,8 +65,9 @@ namespace AutoWhats.Vistas
                 chDisp.IsToggled = Preferences.Get("CondicionDispositivo", true);
             }
             else {
-                Preferences.Set("CondicionDispositivo", true);
+                Preferences.Set("CondicionDispositivo", false);
             }
+
 
             if (chDisp.IsToggled) {
                 ContenedorDispositivos.IsVisible = true;
@@ -74,23 +75,25 @@ namespace AutoWhats.Vistas
 
             }
 
+            DependencyService.Get<XamarinAndroidGlobal>().setDatos(chDisp.IsToggled, "DISPOSITIVO");
+
         }
 
         private void ChDisp_Toggled(object sender, ToggledEventArgs e)
         {
            
-
-
             Preferences.Set("CondicionDispositivo", chDisp.IsToggled);
+            DependencyService.Get<XamarinAndroidGlobal>().setDatos(chDisp.IsToggled, "DISPOSITIVO");
 
             if (chDisp.IsToggled)
             {
                 ContenedorDispositivos.IsVisible = true;
                 gridDisContect.IsVisible = true;
-                DependencyService.Get<XamarinAndroidGlobal>().setDatos(true, "DISPOSITVOS");
+               
                 ListView listaDispositivos = new ListView();
                 listaDispositivos.RowHeight = 60;
                 listaDispositivos.ItemTemplate = new DataTemplate(typeof(CustomViewCell));
+
 
                 //RECARGAMOS LOS DISPOSITIVO
                 ControlDispositivos.loadDispositivos();
@@ -101,7 +104,7 @@ namespace AutoWhats.Vistas
             }
             else
             {
-                DependencyService.Get<XamarinAndroidGlobal>().setDatos(false, "DISPOSITVOS");
+
                 ContenedorDispositivos.IsVisible = false;
                 ControlDispositivos.estado = false;
             }
@@ -169,16 +172,19 @@ namespace AutoWhats.Vistas
         }
         private void ChReadAll_Toggled(object sender, ToggledEventArgs e)
         {
+
             Preferences.Set("LeerTodos", chReadAll.IsToggled);
+
+            DependencyService.Get<XamarinAndroidGlobal>().setDatos(chReadAll.IsToggled, "CONTACTOS");
+
             if (!chReadAll.IsToggled)
             {
-                DependencyService.Get<XamarinAndroidGlobal>().setDatos(false, "CONTACTOS");
+               
                 reloadLista();
                 ControlContactos.estado = false;
             }
             else
             {
-                DependencyService.Get<XamarinAndroidGlobal>().setDatos(true, "CONTACTOS");
                 ContenedorContactos.IsVisible = false;
                 btnAddContacto.IsVisible = false;
                 ContenedorContactos.Content = null;

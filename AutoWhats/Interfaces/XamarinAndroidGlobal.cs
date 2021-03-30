@@ -10,7 +10,7 @@ namespace AutoWhats.Interfaces
     public interface XamarinAndroidGlobal
     {
         void ConfigurarNotificacion();
-        void ADVoiceReaderWhats();
+        void ADVoiceReaderWhats(bool estado = false);
         bool obtenerEstadoBluethooth();
         List<Dispositivo> obtenerDispositivos();
         void setDatos(List<string> datos,string tipo);

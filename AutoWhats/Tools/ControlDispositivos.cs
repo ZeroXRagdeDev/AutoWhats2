@@ -25,6 +25,7 @@ namespace AutoWhats.Tools
 
             string json = JsonConvert.SerializeObject(dispositivos_seleccionados, Formatting.Indented);
             Preferences.Set("DispositivosSeleccionados", json);
+            obtenerDispositivos();
 
         }
         public static  List<Dispositivo> obtenerDispositivos() {
@@ -37,7 +38,7 @@ namespace AutoWhats.Tools
             List<Dispositivo> tmp = new List<Dispositivo>();
             List<Dispositivo> tmpFinal = new List<Dispositivo>();
 
-            List<string> contacto_seleccionado = new List<string>();
+            List<string> cdispositivo_seleccionado = new List<string>();
 
         
 
@@ -50,6 +51,7 @@ namespace AutoWhats.Tools
                     if (dispositivos_seleccionados.Contains(dispo.nombre))
                     {
                         dispo.marcado = true;
+                        cdispositivo_seleccionado.Add(dispo.nombre);
                     }
                     else {
                         dispo.marcado = false;
@@ -59,7 +61,7 @@ namespace AutoWhats.Tools
 
 
             }
-            DependencyService.Get<XamarinAndroidGlobal>().setDatos(contacto_seleccionado, "");
+            DependencyService.Get<XamarinAndroidGlobal>().setDatos(cdispositivo_seleccionado, "DISPOSITIVO");
             return tmpFinal;
         }
     }

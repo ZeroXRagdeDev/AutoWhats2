@@ -75,9 +75,16 @@ namespace AutoWhats.Droid
            
              
                var _socket = device.CreateRfcommSocketToServiceRecord(uuid);
-                _socket.Connect();
 
 
+                if (_socket.IsConnected)
+                {
+                    _socket.Connect();
+                    _socket.Close();
+                }
+                else {
+                    _socket.Connect();
+                }
                 return true;
 
 
@@ -158,9 +165,9 @@ namespace AutoWhats.Droid
             return tmp;
         
         }
-        public void ADVoiceReaderWhats()
+        public void ADVoiceReaderWhats(bool estado = false)
         {
-            estado_voice = !estado_voice;
+            estado_voice = estado;
         }
 
         public void ConfigurarNotificacion() {

@@ -55,6 +55,7 @@ namespace AutoWhats.Tools
         public static void saveContactos() {
             string json = JsonConvert.SerializeObject(contactos, Formatting.Indented);
             Preferences.Set("Contactos", json);
+            loadContactos();
         }
         public static void loadContactos()
         {
@@ -73,7 +74,7 @@ namespace AutoWhats.Tools
             foreach (Contacto c in contactos) {
                  my_data.Add(c.nombre);
             }
-            DependencyService.Get<XamarinAndroidGlobal>().setDatos(my_data,"DISPOSITIVOS");
+            DependencyService.Get<XamarinAndroidGlobal>().setDatos(my_data, "CONTACTOS");
 
         }
         public static async Task<Contacto> obtenerContactoAsync() {
