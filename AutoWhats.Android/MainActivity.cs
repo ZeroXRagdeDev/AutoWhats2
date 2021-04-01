@@ -42,17 +42,15 @@ namespace AutoWhats.Droid
             filter.AddAction(BluetoothDevice.ActionAclDisconnectRequested);
             filter.AddAction(BluetoothDevice.ActionAclDisconnected);
             Xamarin.Essentials.Preferences.Set("SetSubcription", true);
-RegisterReceiver(new MySampleBroadcastReceiver(), filter);
+            RegisterReceiver(new MySampleBroadcastReceiver(), filter);
         
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             UserDialogs.Init(() => this);
             LoadApplication(new App());
 
-
-
-
-
+      
+    
 
         }
         [BroadcastReceiver(Enabled = true)]

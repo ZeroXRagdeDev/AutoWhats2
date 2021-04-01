@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Essentials;
 using Object = Java.Lang.Object;
+using RemoteInput = Android.Support.V4.App.RemoteInput;
 
 namespace AutoWhats.Droid
 {
@@ -51,6 +52,9 @@ namespace AutoWhats.Droid
             try
             {
                 Notification noty = sbn.Notification;
+
+
+
                 if (noty.Category.ToString() == "msg") {
                     Bundle contenedr = noty.Extras;
 
@@ -60,8 +64,9 @@ namespace AutoWhats.Droid
                     string[] multiMensajes = contenedr.GetCharSequenceArray("android.textLines");
 
                     string content = noty.TickerText.ToString();
-                    //    TextToSpeech.SpeakAsync("Mensaje" );
-                    //  TextToSpeech.SpeakAsync("de" );
+
+
+
                     bool estao_lectura = ControlGlobalAndroid.estado_voice;
 
                     if (estao_lectura) {
